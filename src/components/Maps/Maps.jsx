@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 
-function Maps(){
-    return(
-        <h1>Header</h1>
-    )
+const coordinates = [19.0760, 72.8777];
+function MyComponent() {
+    const map = useMap();
+
+    useEffect(() => {
+        if (map) {
+            const bounds = map.getBounds();
+            console.log(bounds);
+        }
+    }, [map]);
+
+    return null;
 }
 
-export default Maps
+function Maps() {
+    return (
+        <MapContainer center={coordinates} zoom={13} style={{ height: '100%', width: '100%' }}>
+            <MyComponent />
+            <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            <Marker position={coordinates}>
+                <Popup>
+                    A pretty CSS3 popup. <br /> Easily customizable.
+                </Popup>
+            </Marker>
+        </MapContainer>
+    );
+}
+
+export default Maps;
