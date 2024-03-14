@@ -10,7 +10,7 @@ const options = {
     tr_latitude: '12.838442',
   },
   headers: {
-    // 'X-RapidAPI-Key': '1dc3581a84mshdcf979fd41a22a8p1bcc2ajsnd841021890c1',
+    'X-RapidAPI-Key': 'YOUR_KEY : ) ',
     'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
   }
 };
