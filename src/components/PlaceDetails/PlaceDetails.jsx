@@ -1,9 +1,9 @@
 import React from "react";
 
-function PlaceDetails(){
+function PlaceDetails({place}){
     return(
-        <h1>Header</h1>
-    )
+        <h1 className="font-bold">{place.name}</h1>
+    );
 }
 
 export default PlaceDetails

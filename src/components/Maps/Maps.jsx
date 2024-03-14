@@ -3,14 +3,25 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 const coordinates = [19.0760, 72.8777];
+
 function MyComponent() {
     const map = useMap();
 
     useEffect(() => {
-        if (map) {
+        const onMoveEnd = () => {
             const bounds = map.getBounds();
             console.log(bounds);
+        };
+
+        if (map) {
+            map.on('moveend', onMoveEnd);
         }
+
+        return () => {
+            if (map) {
+                map.off('moveend', onMoveEnd);
+            }
+        };
     }, [map]);
 
     return null;

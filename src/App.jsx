@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useState} from "react";
 import Header from "./components/Header/Header";
 import Maps from "./components/Maps/Maps";
 import List from "./components/List/List";
-
+import {getPlacesData} from "./api/index"
 
 function App() {
+    const [places,setPlaces] = useState([]);
+    const [coordinates,setCordinates] = useState({});
+    const [bounds , setBonds] = useState(null);
+
+    useEffect(() => {
+        getPlacesData().then((data)=>{
+            setPlaces(data);
+            console.log(data);
+        });
+    },[]);
+
     return(
     <>
         <Header/>
@@ -14,7 +25,7 @@ function App() {
                 <List/>
             </div>
             <div className="bg-gray-400 col-span-2">
-                <Maps/>
+                <Maps setCordinates={setCordinates} setBonds={setBonds} coordinates={coordinates}/>
             </div>
             
         </div>
